@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>年终总结编辑器</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <h2>编辑器设置</h2>
+        <button id="toggle-sidebar" class="ghost-button">隐藏</button>
+      </div>
+
+      <section class="panel">
+        <h3>背景月份</h3>
+        <label>
+          起始月份
+          <input type="month" id="start-month" />
+        </label>
+        <label>
+          结束月份
+          <input type="month" id="end-month" />
+        </label>
+        <button id="apply-month-range" class="primary-button">应用月份范围</button>
+      </section>
+
+      <section class="panel">
+        <h3>特色图片尺寸</h3>
+        <label>
+          图片高度: <span id="image-height-value">90</span>px
+          <input type="range" id="image-height" min="40" max="180" value="90" />
+        </label>
+      </section>
+
+      <section class="panel">
+        <h3>操作</h3>
+        <button id="add-line" class="primary-button">新增水平线</button>
+        <button id="save-json" class="primary-button">保存 JSON</button>
+        <label class="file-button">
+          加载 JSON
+          <input type="file" id="load-json" accept="application/json" />
+        </label>
+      </section>
+    </aside>
+
+    <main class="main">
+      <button id="show-sidebar" class="ghost-button hidden">显示设置</button>
+      <div id="timeline" class="timeline"></div>
+    </main>
+  </div>
+
+  <div id="context-menu" class="context-menu hidden"></div>
+
+  <div id="line-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>编辑水平线</h3>
+      <label>
+        标题
+        <input type="text" id="line-title" />
+      </label>
+      <label>
+        起始月份
+        <select id="line-start"></select>
+      </label>
+      <label>
+        结束月份
+        <select id="line-end"></select>
+      </label>
+      <div class="modal-actions">
+        <button id="line-save" class="primary-button">保存</button>
+        <button id="line-cancel" class="ghost-button">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="bubble-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>编辑气泡</h3>
+      <label>
+        标题
+        <input type="text" id="bubble-title" />
+      </label>
+      <label>
+        描述（用 **加粗**）
+        <textarea id="bubble-desc" rows="4"></textarea>
+      </label>
+      <label>
+        特色图片
+        <input type="file" id="bubble-image" accept="image/*" />
+      </label>
+      <div class="modal-actions">
+        <button id="bubble-save" class="primary-button">保存</button>
+        <button id="bubble-cancel" class="ghost-button">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
