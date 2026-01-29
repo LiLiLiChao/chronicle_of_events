@@ -45,6 +45,13 @@ let dragState = null;
 
 const monthWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--month-width"), 10);
 
+function generateId() {
+  if (window.crypto && typeof window.crypto.randomUUID === "function") {
+    return window.crypto.randomUUID();
+  }
+  return `id-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
 function init() {
   startMonthInput.value = `${state.settings.startYear}-${String(state.settings.startMonth).padStart(2, "0")}`;
   endMonthInput.value = `${state.settings.endYear}-${String(state.settings.endMonth).padStart(2, "0")}`;
@@ -151,7 +158,7 @@ function render() {
 
 function addLine() {
   const line = {
-    id: crypto.randomUUID(),
+    id: generateId(),
     title: "新水平线",
     startIndex: 0,
     endIndex: Math.max(state.months.length - 1, 0),
@@ -164,7 +171,7 @@ function addLine() {
 function addBubble(line) {
   const startX = line.startIndex * monthWidth + 30;
   const bubble = {
-    id: crypto.randomUUID(),
+    id: generateId(),
     lineId: line.id,
     title: "新气泡",
     description: "请输入描述",
