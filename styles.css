@@ -1,0 +1,256 @@
+:root {
+  --sidebar-width: 280px;
+  --month-width: 160px;
+  --image-height: 90px;
+  --line-color: #f36f2e;
+  --bubble-bg: rgba(252, 239, 188, 0.9);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "PingFang SC", sans-serif;
+  background: #f7f9fc;
+  color: #1f2a37;
+}
+
+#app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background: #ffffff;
+  border-right: 1px solid #e4e7ec;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar.hidden {
+  display: none;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px solid #eef2f7;
+}
+
+.panel label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  gap: 6px;
+}
+
+.main {
+  flex: 1;
+  position: relative;
+  overflow: auto;
+}
+
+.timeline {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 64px;
+}
+
+.month-column {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--month-width);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.month-label {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: var(--month-width);
+  text-align: center;
+  font-weight: 600;
+}
+
+.month-column:nth-child(odd) {
+  background: rgba(209, 233, 255, 0.45);
+}
+
+.month-column:nth-child(even) {
+  background: rgba(221, 245, 208, 0.45);
+}
+
+.line {
+  position: absolute;
+  height: 2px;
+  background: var(--line-color);
+  cursor: grab;
+}
+
+.line::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: -4px;
+  border-left: 8px solid var(--line-color);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+
+.line-title {
+  position: absolute;
+  left: -6px;
+  top: -28px;
+  font-weight: 600;
+  color: var(--line-color);
+  white-space: nowrap;
+}
+
+.bubble {
+  position: absolute;
+  min-width: 200px;
+  max-width: 320px;
+  padding: 14px;
+  border-radius: 16px;
+  background: var(--bubble-bg);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+  cursor: grab;
+}
+
+.bubble h4 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.bubble img {
+  display: block;
+  height: var(--image-height);
+  width: auto;
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.bubble p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.primary-button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.ghost-button {
+  background: transparent;
+  border: 1px solid #d0d5dd;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.file-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #d0d5dd;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.file-button input {
+  display: none;
+}
+
+.context-menu {
+  position: fixed;
+  background: #ffffff;
+  border: 1px solid #d0d5dd;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
+  padding: 6px;
+  z-index: 9999;
+  min-width: 140px;
+}
+
+.context-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.context-menu button:hover {
+  background: #f1f5f9;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal.hidden,
+.context-menu.hidden,
+.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-content label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+#show-sidebar {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+}
